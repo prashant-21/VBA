@@ -1,0 +1,51 @@
+Sub ReferToCells()
+    
+    'Clear data from all the cells in the selected worksheet
+    Cells.Clear
+    
+    Range("A1").Value = "1st"  'Cells(1, 1).Value = "1st"
+    
+    '4 different ways to Paste values in a range of cells without any skipping in the selected worksheet
+    Range("A2:C2").Value = "2nd"
+    Range("A" & 3, "C" & 3) = "3rd"
+    Range(Cells(4, 1), Cells(4, 3)).Value = "4th"
+    Range("A5", "C5") = "5th"
+    
+    'Paste value "3rd" from cells A3 to C3 and E3 thru F3 in the selected worksheet
+    Range("A6:C6,E6:F6").Value = "6th"
+    
+    'Paste only in A4 and C4 but not in B4
+    Range("A7,C7") = "7th"
+    
+    'uses the cells property of the range object. It will paste value in B13
+    Range("A10:C20").Cells(4, 2).Value = "8th"
+    
+    'uses the offset property
+    Range("A1").Offset(7, 2).Value = "9th"
+    
+    'offset can be used on more than one cell. This will paste 3 valves from cells B9 to D9
+    Range("A1:C1").Offset(8, 1).Value = "10th"
+    
+    'names in name manager can be used
+    'Lastone is a name in name manager
+    
+    Range("LastOne").Value = "10th"
+    
+    '_______________________________________________
+    '
+    'Refer to entire rows or columns
+    '_______________________________________________
+    
+    Rows("12:14").RowHeight = 30
+    
+    'rows 17 & 19 are not impacted
+    Range("16:16,18:18,20:20").RowHeight = 30
+    
+    Columns("E:F").ColumnWidth = 10
+    Range("H:H,J:J").ColumnWidth = 10
+    Range(Columns(1), Columns(3)).ColumnWidth = 5
+    
+    'Autofit all columns
+     Cells.Columns.AutoFit
+   
+End Sub
